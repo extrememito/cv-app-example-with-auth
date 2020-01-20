@@ -45,6 +45,9 @@ const routes = mount({
 export const Router = () => {
   const dispatch = useDispatch()
   const loggedIn = useSelector<State, boolean>(state => !!state.auth.token)
+  const unsuccessfulLoginCount = useSelector<State, number>(
+    state => state.auth.unsuccessfulLoginCount
+  )
 
   useEffect(() => {
     const token = localStorage.getItem(TOKEN)
@@ -53,6 +56,12 @@ export const Router = () => {
       dispatch(signUpSuccess(token, user))
     }
   }, [dispatch])
+
+  useEffect(() => {
+    if(unsuccessfulLoginCount > 3) {
+      const postpone = new Date(new Date().getTime() + 3*60000);
+    }
+  }, [unsuccessfulLoginCount])
 
   return (
     <NaviRouter routes={routes} context={{ loggedIn }}>

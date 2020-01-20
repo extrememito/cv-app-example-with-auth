@@ -71,4 +71,6 @@ export const logout = () => {
   return action(AuthActionTypes.LOGOUT)
 }
 
-export type AuthActions = ActionType<typeof signUpSuccess | typeof logout>
+export type AuthActions = ActionType<
+  typeof signUpSuccess | typeof logout | typeof signUpError
+>

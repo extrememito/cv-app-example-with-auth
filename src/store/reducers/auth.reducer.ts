@@ -6,7 +6,7 @@ import { AuthActions, AuthActionTypes } from '../actions/auth.actions'
 const initialState: AuthState = {
   token: '',
   user: '',
-  unsuccessfulLoginCount: 0
+  unsuccessfulLoginCount: 0,
 }
 
 export const authReducer: Reducer<AuthState, AuthActions> = (
@@ -19,6 +19,13 @@ export const authReducer: Reducer<AuthState, AuthActions> = (
         ...state,
         token: action.payload.token,
         user: action.payload.user,
+        unsuccessfulLoginCount: 0,
+      }
+    }
+    case AuthActionTypes.SIGNUP_ERROR: {
+      return {
+        ...state,
+        unsuccessfulLoginCount: state.unsuccessfulLoginCount++
       }
     }
     case AuthActionTypes.LOGOUT: {
