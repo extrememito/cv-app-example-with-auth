@@ -10,7 +10,7 @@ const fakeApiLogin = (user: string, password: string) => {
       if (user === 'miro@gajdos.com' && password === 'heslo') {
         res('faelkfjfeafj4lk1341l')
       } else {
-        rej('unathorized')
+        rej('Wrong email or password')
       }
     }, 3000)
   })
