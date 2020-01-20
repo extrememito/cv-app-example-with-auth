@@ -3,12 +3,10 @@ export interface AuthState {
   user: string
   unsuccessfulLoginCount: number
 }
-
-export interface AuthStorage {
-  token: string
-  user: string
-}
-
 export interface State {
   auth: AuthState
+}
+
+export interface RouterContext {
+  loggedIn: boolean
 }

@@ -1,13 +1,13 @@
 import { action, ActionType } from 'typesafe-actions'
 import { Dispatch } from 'redux'
-import { AuthStorage } from '../../typings/interfaces'
 
-const USER_DATA = 'USER_DATA'
+export const USER = 'user'
+export const TOKEN = 'token'
 
 const fakeApiLogin = (user: string, password: string) => {
   return new Promise<string>((res, rej) => {
     setTimeout(() => {
-      if (user === 'miro@gajdos.com' && password === 'heslo') {
+      if (user === 'user@email.com' && password === 'password') {
         res('faelkfjfeafj4lk1341l')
       } else {
         rej('Wrong email or password')
@@ -60,16 +60,14 @@ export const signUpSuccess = (token: string, user: string) =>
 export const signUpError = () => action(AuthActionTypes.SIGNUP_ERROR)
 
 const saveDataToStorage = (token: string, user: string) => {
-  const data: AuthStorage = {
-    token,
-    user,
-  }
-  localStorage.setItem(USER_DATA, JSON.stringify(data))
+  localStorage.setItem(USER, user)
+  localStorage.setItem(TOKEN, token)
 }
 
 export const logout = () => {
   // Clear timer
-  localStorage.removeItem(USER_DATA)
+  localStorage.removeItem(TOKEN)
+  localStorage.removeItem(USER)
   return action(AuthActionTypes.LOGOUT)
 }
 

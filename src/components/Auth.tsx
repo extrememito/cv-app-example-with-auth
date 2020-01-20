@@ -35,8 +35,8 @@ export const Auth: React.FC<{ isRegister?: boolean }> = ({ isRegister }) => {
           : await dispatch(login(email, password))
       } catch (error) {
         setSubmitError(error)
+        setLoading(false)
       }
-      setLoading(false)
     },
     [dispatch, setLoading, setSubmitError, isRegister]
   )
