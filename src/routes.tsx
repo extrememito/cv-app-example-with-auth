@@ -58,8 +58,10 @@ export const Router = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if(unsuccessfulLoginCount > 3) {
-      const postpone = new Date(new Date().getTime() + 3*60000);
+    if (unsuccessfulLoginCount > 3) {
+      const postpone = new Date(new Date().getTime() + 3 * 60000)
+      // TODO Finish posptone login after 3 wrong attempts
+      
     }
   }, [unsuccessfulLoginCount])
 
